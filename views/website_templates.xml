@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Theme Default Assets Frontend">
+        <xpath expr="//link[last()]" position="after">
+            <link rel='stylesheet' href='/wedding/static/src/css/font-awesome.css'/>
+            <link rel='stylesheet' href='/wedding/static/src/css/font-awesome.min.css'/>
+            <link rel='stylesheet' href='/wedding/static/src/css/style.css'/>
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/wedding/static/src/js/custom.js"></script>
+        </xpath>
+    </template>
+
+    <template id="wedding.photos">
+        <t t-call="website.layout">
+            <div class="outer-container">
+                <div class="container portfolio-page">
+                    <t t-foreach="[photos[x:x+4] for x in xrange(0, len(photos), 4)]" t-as="photo_by_4">
+                        <div class="row">
+
+                            <t t-foreach="photo_by_4" t-as="photo">
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <div class="portfolio-content">
+                                        <figure>
+                                            <img t-att-src="'data:image/png;base64,' + photo.photo" alt=""/>
+                                        </figure>
+
+                                        <div class="entry-content">
+                                            <h3 class="text-center">
+                                                <t t-raw="photo.name"/>
+                                            </h3>
+
+                                            <ul class="flex list-inline">
+                                                <li>
+                                                    <a href="#" data-toggle="modal" t-attf-data-target="&#35;_{{photo.id}}">
+                                                        Open
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a t-att-href="'data:image/png;base64,' + photo.photo" alt="" t-att-download="photo.name">Download</a>
+                                                </li>
+                                            </ul>
+                                        </div><!-- .entry-content -->
+                                    </div><!-- .portfolio-content -->
+                                </div><!-- .col -->
+                                <div class="modal fade" t-attf-id="_{{photo.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5><t t-raw="photo.name"/></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&amp;times</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img t-att-src="'data:image/png;base64,' + photo.photo" alt="" style="width:100%"/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <a t-att-href="'data:image/png;base64,' + photo.photo" alt="" t-att-download="photo.name"><button type="button" class="btn btn-primary">Download</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div><!-- .row -->
+                    </t>
+                </div><!-- .container -->
+            </div><!-- .outer-container -->
+        </t>
+    </template>
+</odoo>

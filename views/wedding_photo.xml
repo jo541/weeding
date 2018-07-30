@@ -1,0 +1,19 @@
+<odoo>
+
+        <record id="action_wedding_photo" model="ir.actions.act_window">
+            <field name="name">Photo</field>
+            <field name="res_model">wedding.photo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_website_configuration" model="ir.actions.act_window">
+            <field name="name">Website Settings</field>
+            <field name="res_model">website.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="menu_wedding" sequence="1" name="wedding" />
+        <menuitem id="wedding_photo" parent="menu_wedding" name="Photo" action="action_wedding_photo"/>
+</odoo>
