@@ -12,7 +12,7 @@
         </xpath>
     </template>
 
-    <template id="wedding.photos">
+    <template id="photos">
         <t t-call="website.layout">
             <div class="outer-container">
                 <div class="container portfolio-page">
